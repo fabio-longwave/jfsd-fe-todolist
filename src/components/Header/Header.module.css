@@ -1,0 +1,10 @@
+.header {
+    display:flex;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.themeSelector {
+    cursor: pointer;
+    font-size: 25px;
+}
