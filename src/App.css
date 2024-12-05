@@ -25,4 +25,6 @@
   .card {
     background-color: #ffffff;
   }
+
+  .logo { filter: invert(1); }
 }

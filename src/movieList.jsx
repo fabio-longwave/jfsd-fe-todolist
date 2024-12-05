@@ -8,7 +8,7 @@ const MovieList = () => {
             const resp = await fetch('https://api.sampleapis.com/movies/animation');
             const json = await resp.json();
             console.log(json)
-            //setData(json);
+            setData(json);
         } catch (err) {
             setData(err.message);
         }
@@ -22,11 +22,17 @@ const MovieList = () => {
 
         window.addEventListener('resize', myFunction)
     }, []);
-    useEffect(() => {},[data])
+    useEffect(() => {
+    }, [data])
 
-    return <ul>
-        {data.map((item) => <li key={item.id}>{item.title}</li>)}
-    </ul>
+    return (
+        <>
+            <ul>
+                {data.map((item) => <li key={item.id}>{item.title}</li>)}
+            </ul>
+
+        </>
+    )
 }
 
 export default MovieList;

@@ -8,8 +8,9 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import RegistrationForm from "./components/RegistrationFormComponent/RegistrationForm";
 import {Provider} from "react-redux";
 import {persistor, store} from "./store/store"
-import MovieList from "./movieList.jsx";
 import {PersistGate} from "redux-persist/integration/react";
+import TodoList from "./components/Todo/TodoList/TodoList.jsx";
+import TodoPage from "./components/Todo/TodoPage/TodoPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -28,8 +29,8 @@ const router = createBrowserRouter([
                 element: <ProtectedRoute/>,
                 children: [
                     {
-                        path: '/movieList',
-                        element: <MovieList/>
+                        path: '/todo-list',
+                        element: <TodoPage/>
                     }
                 ]
             }
