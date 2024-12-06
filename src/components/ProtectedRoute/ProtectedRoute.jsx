@@ -9,9 +9,7 @@ const ProtectedRoute = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(user.accessToken) {
-            return;
-        } else {
+        if(!user.accessToken) {
             navigate('/');
         }
     }, []);

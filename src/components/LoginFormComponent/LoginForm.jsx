@@ -49,7 +49,7 @@ const LoginForm = () => {
 
         login(payload).then(data => {
             dispatch(setUser(data));
-            navigate('/movieList')
+            navigate('/todo-list')
         }).catch(err => console.log(err));
     }
 

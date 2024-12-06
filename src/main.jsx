@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 element: <ProtectedRoute/>,
                 children: [
                     {
-                        path: '/todo-list',
+                        path: 'todo-list',
                         element: <TodoPage/>
                     }
                 ]

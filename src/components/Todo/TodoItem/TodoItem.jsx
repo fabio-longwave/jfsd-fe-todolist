@@ -6,11 +6,11 @@ const TodoItem = ({ todo, onEdit, onDelete }) => {
 
     return <div className={styles.todoItem}>
         <div className={styles.todoDate}>
-            Data: {todo.date}
+            Data: {todo.dueDate}
         </div>
         <div className={styles.todoContent}>
             <div className={styles.todoInfo}>
-                <div className={styles.todoTitle}>{todo.title}</div>
+                <div className={styles.todoTitle}>{todo.name}</div>
                 <div>{todo.description}</div>
             </div>
             <div className={styles.buttons}>
