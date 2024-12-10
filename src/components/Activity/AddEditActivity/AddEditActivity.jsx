@@ -1,9 +1,9 @@
-import styles from "./AddEditTodo.module.css";
+import styles from "./AddEditActivity.module.css";
 import useInput from "../../../hooks/useInput.js";
 import Input from "../../Input/Input.jsx";
 import Textarea from "../../Textarea/Textarea.jsx";
 
-const AddEditTodo = ({onSubmit, todo = null}) => {
+const AddEditActivity = ({onSubmit, todo = null}) => {
     const {value: dueDateValue, handleChange: handleDateChange} = useInput(todo?.dueDate || '');
     const {value: nameValue, handleChange: handleTitleChange} = useInput(todo?.name || '');
     const {value: descriptionValue, handleChange: handleDescriptionChange} = useInput(todo?.description || '');
@@ -29,4 +29,4 @@ const AddEditTodo = ({onSubmit, todo = null}) => {
     )
 }
 
-export default AddEditTodo;
+export default AddEditActivity;

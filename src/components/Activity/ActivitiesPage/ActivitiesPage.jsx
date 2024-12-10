@@ -1,34 +1,35 @@
-import TodoList from "../TodoList/TodoList.jsx";
-import styles from "./TodoPage.module.css";
+import ActivityList from "../ActivityList/ActivityList.jsx";
+import styles from "./ActivitiesPage.module.css";
 import {useEffect, useState} from "react";
 import Modal from "../../Modal/Modal.jsx";
-import AddEditTodo from "../AddEditTodo/AddEditTodo.jsx";
+import AddEditActivity from "../AddEditActivity/AddEditActivity.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {addTodo, setTodoList} from "../../../reducers/todolist.slice.js";
+import {addActivity as addNewActivity, setActivities} from "../../../reducers/activities.slice.js";
 import {addActivity, getAllActivities} from "../../../services/activity.service.js";
 import {UserSelector} from "../../../reducers/user.slice.js";
 
-const TodoPage = () => {
+const ActivitiesPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(UserSelector);
 
     const loadActivities = async () => {
-        const activities = await getAllActivities(user.accessToken);
-        if(activities && activities.length > 0){
-            dispatch(setTodoList(activities));
+        let activities = await getAllActivities(user.accessToken);
+        activities = activities.filter(activity => activity.status !== 'deleted');
+        if (activities && activities.length > 0) {
+            dispatch(setActivities(activities));
         }
     }
 
-    useEffect( () => {
+    useEffect(() => {
         loadActivities().catch(e => console.log(e));
     }, []);
 
     const onSubmit = async (values) => {
         console.log(values);
         const newActivity = await addActivity(values, user.accessToken).catch(e => console.log(e));
-        if(newActivity) {
-            dispatch(addTodo(values));
+        if (newActivity) {
+            dispatch(addNewActivity(values));
             setIsModalOpen(false);
         }
     }
@@ -37,9 +38,9 @@ const TodoPage = () => {
             <div className={styles.listHeader}>
                 <button onClick={() => setIsModalOpen(true)}>Aggiungi Elemento</button>
             </div>
-            <TodoList />
+            <ActivityList/>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} header="Aggiungi Elemento">
-                <AddEditTodo onSubmit={onSubmit}/>
+                <AddEditActivity onSubmit={onSubmit}/>
                 <div>
                     <button type="submit" form="add-edit-todo">Aggiungi alla lista</button>
                 </div>
@@ -48,4 +49,4 @@ const TodoPage = () => {
     )
 }
 
-export default TodoPage
+export default ActivitiesPage

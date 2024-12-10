@@ -1,8 +1,8 @@
 import {combineReducers} from "@reduxjs/toolkit";
 import {userSlice} from "./user.slice.js";
-import {todoListSlice} from "./todoList.slice.js";
+import {activitiesSlice} from "./activities.slice.js";
 
 export const reducers = combineReducers({
     user: userSlice.reducer,
-    todolist: todoListSlice.reducer
+    activities: activitiesSlice.reducer
 })

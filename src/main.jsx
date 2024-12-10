@@ -9,8 +9,8 @@ import RegistrationForm from "./components/RegistrationFormComponent/Registratio
 import {Provider} from "react-redux";
 import {persistor, store} from "./store/store"
 import {PersistGate} from "redux-persist/integration/react";
-import TodoList from "./components/Todo/TodoList/TodoList.jsx";
-import TodoPage from "./components/Todo/TodoPage/TodoPage.jsx";
+import ActivityList from "./components/Activity/ActivityList/ActivityList.jsx";
+import ActivitiesPage from "./components/Activity/ActivitiesPage/ActivitiesPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: 'todo-list',
-                        element: <TodoPage/>
+                        element: <ActivitiesPage/>
                     }
                 ]
             }

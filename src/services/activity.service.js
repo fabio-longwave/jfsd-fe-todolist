@@ -34,3 +34,20 @@ export const addActivity = async (activity, accessToken) => {
         throw Error(error)
     }
 }
+
+export const deleteActivity = async (activityId, accessToken) => {
+    try {
+        const response = await fetch(`http://localhost:8000/activity/${activityId}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}`},
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+            return data;
+        }
+    } catch (error) {
+        console.log(error, 'Delete Activity Error')
+        throw Error(error)
+    }
+}
