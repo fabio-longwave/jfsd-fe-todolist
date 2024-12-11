@@ -1,24 +1,16 @@
 import styles from './ActivityItem.module.css';
-import { FaRegTrashCan } from "react-icons/fa6";
-import { FaRegPenToSquare } from "react-icons/fa6";
-import { format } from "date-fns";
-import {deleteActivity} from "../../../services/activity.service";
-import {useDispatch, useSelector} from "react-redux";
-import {UserSelector} from "../../../reducers/user.slice.js";
-import {removeActivity} from "../../../reducers/activities.slice.js";
+import {
+    FaRegTrashCan,
+    FaRegPenToSquare,
+    FaBoxArchive,
+    FaCheck,
+    FaArrowLeft
+} from "react-icons/fa6";
+import {format} from "date-fns";
+import {config} from "../../../../config.js";
 
-const ActivityItem = ({ activity, onEdit }) => {
-    const user = useSelector(UserSelector);
-    const dispatch = useDispatch();
+const ActivityItem = ({activity, onEdit, onDelete, setStatus}) => {
     const date = format(new Date(activity.dueDate), 'dd/MM/yyyy');
-
-    const deleteHandler = async () => {
-        const res = await deleteActivity(activity["_id"], user.accessToken);
-        console.log(res, 'RESPONSE');
-        if(res) {
-            dispatch(removeActivity(activity["_id"]));
-        }
-    }
 
     return <div className={styles.todoItem}>
         <div className={styles.todoDate}>
@@ -30,8 +22,21 @@ const ActivityItem = ({ activity, onEdit }) => {
                 <div>{activity.description}</div>
             </div>
             <div className={styles.buttons}>
-                <button onClick={onEdit} title="Modifica"><FaRegPenToSquare /> </button>
-                <button onClick={deleteHandler} title="Elimina"><FaRegTrashCan /></button>
+                {activity.status === 'completed' &&
+                    <>
+                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.OPEN)}
+                                title="Riapri attività"><FaArrowLeft/>
+                        </button>
+                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.ARCHIVED)}
+                                title="Archivia" style={{order: 2}}><FaBoxArchive/>
+                        </button>
+                    </>
+                }
+                {activity.status === 'open' &&
+                    <button onClick={() => setStatus(activity['_id'], config.activityStatus.COMPLETED)} title="Elimina">
+                        <FaCheck/></button>}
+                <button onClick={onEdit} title="Modifica"  style={{order: 1}}><FaRegPenToSquare/></button>
+                <button onClick={() => onDelete(activity)} title="Elimina"  style={{order: 3}}><FaRegTrashCan/></button>
             </div>
         </div>
     </div>

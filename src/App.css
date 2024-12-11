@@ -28,3 +28,27 @@
 
   .logo { filter: invert(1); }
 }
+
+.modal__buttons {
+  margin-top:20px;
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+}
+
+.button {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.confirm__button{
+  background-color: #6cb444;
+  color:#ffffff;
+}
+
+.delete__button {
+  background-color: #e34646;
+  color:#ffffff;
+  transition:all .3s ease-in-out;
+}
