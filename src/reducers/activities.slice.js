@@ -14,7 +14,10 @@ export const activitiesSlice = createSlice({
         addActivity: (state, action) => {
            state.activities.push(action.payload)
         },
-        editActivity: (state, action) => {},
+        editActivity: (state, action) => {
+            const index = state.activities.findIndex((activity) => activity["_id"] === action.payload.id)
+            state.activities[index] = {...state.activities[index], ...action.payload.activity};
+        },
         removeActivity: (state, action) => {
             state.activities = state.activities.filter((activity) => activity['_id'] !== action.payload)
         },
@@ -26,11 +29,18 @@ export const activitiesSlice = createSlice({
                 return activity
             });
         },
-        clearTodoList: (state, action) => ({...initialState})
+        clearActivityList: () => initialState
     }
 })
 
-export const {setActivities, addActivity, editActivity, removeActivity, setActivityStatus} = activitiesSlice.actions;
+export const {
+    setActivities,
+    addActivity,
+    editActivity,
+    removeActivity,
+    setActivityStatus,
+    clearActivityList
+} = activitiesSlice.actions;
 
 export const ActivitiesSelector = (state) => state.activities.activities;
 

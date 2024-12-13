@@ -17,7 +17,11 @@
     background-color: var(--background-color);
     --input-background: var(--background-color);
 
+    --secondary-background: #2b3a49;
     --todo-item-background: #223244
+}
+* {
+    box-sizing: border-box;
 }
 
 a {
@@ -36,6 +40,7 @@ body {
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
+    height:100vh
 }
 
 input, textarea {
@@ -89,6 +94,8 @@ button:focus-visible {
     --background-color: #a6d9ec;
     --text-color: #333333;
     --input-background: #e5e6e9;
-    --todo-item-background: #7ea6dc
+    --todo-item-background: #7ea6dc;
+    --secondary-background: #ffffff;
+
 
 }

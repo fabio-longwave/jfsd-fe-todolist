@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addActivity as addNewActivity, setActivities} from "../../../reducers/activities.slice.js";
 import {addActivity, getAllActivities} from "../../../services/activity.service.js";
 import {UserSelector} from "../../../reducers/user.slice.js";
+import {createPortal} from "react-dom";
 
 const ActivitiesPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,18 +34,23 @@ const ActivitiesPage = () => {
             setIsModalOpen(false);
         }
     }
+
+    const addActivityModal = (
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} header="Crea Attività">
+            <AddEditActivity onSubmit={onSubmit}/>
+            <div className="modal__buttons">
+                <button type="submit" form="add-edit-todo">Salva attivit&agrave;</button>
+            </div>
+        </Modal>
+    );
+
     return (
         <>
             <div className={styles.listHeader}>
                 <button onClick={() => setIsModalOpen(true)}>Aggiungi Elemento</button>
             </div>
             <ActivityList/>
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} header="Aggiungi Elemento">
-                <AddEditActivity onSubmit={onSubmit}/>
-                <div>
-                    <button type="submit" form="add-edit-todo">Aggiungi alla lista</button>
-                </div>
-            </Modal>
+            {createPortal(addActivityModal, document.body)}
         </>
     )
 }

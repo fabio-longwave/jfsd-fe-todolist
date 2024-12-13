@@ -9,8 +9,9 @@ import RegistrationForm from "./components/RegistrationFormComponent/Registratio
 import {Provider} from "react-redux";
 import {persistor, store} from "./store/store"
 import {PersistGate} from "redux-persist/integration/react";
-import ActivityList from "./components/Activity/ActivityList/ActivityList.jsx";
 import ActivitiesPage from "./components/Activity/ActivitiesPage/ActivitiesPage.jsx";
+import AuthLayout from "./components/AuthLayout/AuthLayout.jsx";
+import MainLayout from "./components/MainLayout/MainLayout.jsx";
 
 const router = createBrowserRouter([
     {
@@ -18,19 +19,29 @@ const router = createBrowserRouter([
         element: <App/>,
         children: [
             {
-                index: true,
-                element: <LoginForm/>
-            },
-            {
-                path: 'registration',
-                element: <RegistrationForm/>
-            },
-            {
-                element: <ProtectedRoute/>,
+                element: <AuthLayout/>,
                 children: [
                     {
-                        path: 'todo-list',
-                        element: <ActivitiesPage/>
+                        index: true,
+                        element: <LoginForm/>
+                    },
+                    {
+                        path: 'registration',
+                        element: <RegistrationForm/>
+                    }
+                ]
+            },
+            {
+                element: <MainLayout />,
+                children: [
+                    {
+                        element: <ProtectedRoute/>,
+                        children: [
+                            {
+                                path: 'todo-list',
+                                element: <ActivitiesPage/>
+                            }
+                        ]
                     }
                 ]
             }

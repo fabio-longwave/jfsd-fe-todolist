@@ -1,13 +1,12 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width:100%;
   text-align: center;
+  height:100%;
 }
 
 .card {
   padding: 2em;
-  background-color: #2b3a49;
+  background-color: var(--secondary-background);
   border-radius: 8px;
   box-shadow: 1px 1px 8px -3px rgba(0, 0, 0, 0.5);
   min-width:300px;
@@ -22,10 +21,6 @@
 }
 
 [data-theme='light'] {
-  .card {
-    background-color: #ffffff;
-  }
-
   .logo { filter: invert(1); }
 }
 

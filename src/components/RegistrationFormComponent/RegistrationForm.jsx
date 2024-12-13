@@ -1,11 +1,12 @@
 import { useState} from "react";
 import styles from "./RegistrationForm.module.css";
 import Logo from "../../assets/logo-tnv-academy.png"
-import {useNavigate} from "react-router";
+import {Link, useNavigate} from "react-router";
 import useInput from "../../hooks/useInput.js";
 import {isEmail, hasMinLength, isNotEmpty, isEqualsToOtherValue} from "../../util/validation.js";
 import Input from "../Input/Input.jsx";
 import {register} from "../../services/registration.services.js";
+import {FaArrowLeftLong} from "react-icons/fa6";
 
 const RegistrationForm = () => {
     const navigate = useNavigate();
@@ -67,7 +68,7 @@ const RegistrationForm = () => {
 
     return <div className="card">
         <img src={Logo} className="logo" alt="logo"/>
-        <h2>Accedi</h2>
+        <h2>Registrati</h2>
         <form onSubmit={submitHandler}>
             <Input label="Nome"
                    type="text"
@@ -75,30 +76,33 @@ const RegistrationForm = () => {
                    name="name"
                    value={nameValue}
                    onChange={handleNameChange}
-                   error={formInvalid.name && 'Inserisci il tuo nome'} />
+                   error={formInvalid.name && 'Inserisci il tuo nome'}/>
             <Input label="Email"
                    type="text"
                    id="email"
                    name="email"
                    value={emailValue}
                    onChange={handleEmailChange}
-                   error={formInvalid.email && 'Digita una mail valida'} />
+                   error={formInvalid.email && 'Digita una mail valida'}/>
             <Input label="Password"
                    type="password"
                    id="password"
                    name="password"
                    value={passwordValue}
                    onChange={handlePasswordChange}
-                   error={formInvalid.password && 'La password deve contenere almeno 8 caratteri'} />
+                   error={formInvalid.password && 'La password deve contenere almeno 8 caratteri'}/>
             <Input label="Conferma password"
                    type="password"
                    id="confirm-password"
                    name="confirm-password"
                    value={confirmPasswordValue}
                    onChange={handleConfirmPasswordChange}
-                   error={formInvalid.passwordDoNotMatch && 'Le password devono corrispondere'} />
+                   error={formInvalid.passwordDoNotMatch && 'Le password devono corrispondere'}/>
             <button>Registrati</button>
         </form>
+        <div className={styles.backToLogin}>
+            <Link to={'/'}><FaArrowLeftLong /> Torna al Login</Link>
+        </div>
     </div>
 }
 

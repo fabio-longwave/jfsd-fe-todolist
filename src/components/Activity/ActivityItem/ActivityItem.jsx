@@ -35,8 +35,8 @@ const ActivityItem = ({activity, onEdit, onDelete, setStatus}) => {
                 {activity.status === 'open' &&
                     <button onClick={() => setStatus(activity['_id'], config.activityStatus.COMPLETED)} title="Elimina">
                         <FaCheck/></button>}
-                <button onClick={onEdit} title="Modifica"  style={{order: 1}}><FaRegPenToSquare/></button>
-                <button onClick={() => onDelete(activity)} title="Elimina"  style={{order: 3}}><FaRegTrashCan/></button>
+                <button onClick={() => onEdit(activity)} title="Modifica"  style={{order: 1}}><FaRegPenToSquare/></button>
+                <button onClick={() => onDelete(activity)} title="Elimina"  style={{order: 3}} className="delete__button"><FaRegTrashCan/></button>
             </div>
         </div>
     </div>

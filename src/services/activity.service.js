@@ -35,6 +35,25 @@ export const addActivity = async (activity, accessToken) => {
     }
 }
 
+export const editActivity = async (activityId, activity, accessToken) => {
+    try {
+        const response = await fetch(`${config.api.BASE_URL}${config.api.ACTIVITY}/${activityId}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}`},
+            body: JSON.stringify(activity)
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+            return data;
+        }
+    } catch (error) {
+        console.log(error, 'Editing Activity Error')
+        throw Error(error)
+    }
+}
+
+
 export const deleteActivity = async (activityId, accessToken) => {
     try {
         const response = await fetch(`${config.api.BASE_URL}${config.api.ACTIVITY}/${activityId}`, {
