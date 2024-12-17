@@ -10,7 +10,7 @@
 
 .todoDate {
     font-size: 0.75rem;
-    color: #bbbbbb;
+    color: var(--text-color);
 }
 
 .todoContent {

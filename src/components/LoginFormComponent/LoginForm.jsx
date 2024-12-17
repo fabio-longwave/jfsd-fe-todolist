@@ -1,4 +1,4 @@
-import { useState} from "react";
+import {useState} from "react";
 import Logo from "../../assets/logo-tnv-academy.png"
 import {Link, useNavigate} from "react-router";
 import Input from "../Input/Input.jsx";
@@ -47,10 +47,11 @@ const LoginForm = () => {
             password: passwordValue,
         }
 
-        login(payload).then(data => {
-            dispatch(setUser(data));
+        const res = await login(payload)
+        if (res) {
+            dispatch(setUser(res));
             navigate('/todo-list')
-        }).catch(err => console.log(err));
+        }
     }
 
 
@@ -64,7 +65,7 @@ const LoginForm = () => {
                    name="email"
                    value={emailValue}
                    onChange={handleEmailChange}
-                   error={formInvalid.email && 'Digita una mail valida'} />
+                   error={formInvalid.email && 'Digita una mail valida'}/>
 
             <Input label="Password"
                    id="password"
@@ -72,7 +73,7 @@ const LoginForm = () => {
                    name="password"
                    value={passwordValue}
                    onChange={handlePasswordChange}
-                   error={formInvalid.password && 'La password deve contenere almeno 8 caratteri'} />
+                   error={formInvalid.password && 'La password deve contenere almeno 8 caratteri'}/>
             <div className={styles.registrationLink}>
                 <Link to={'/registration'}>Registrati</Link>
             </div>

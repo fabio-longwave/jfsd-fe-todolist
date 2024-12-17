@@ -60,10 +60,12 @@ export const deleteActivity = async (activityId, accessToken) => {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}`},
         });
-        const data = await response.json();
 
         if (response.ok) {
-            return data;
+            return {};
+        } else {
+            console.log(response);
+            throw Error(response.statusText)
         }
     } catch (error) {
         console.log(error, 'Delete Activity Error')

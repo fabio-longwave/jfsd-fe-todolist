@@ -9,6 +9,10 @@ export const login = async (loginParams) => {
 
         if (response.ok) {
             return data;
+        } else {
+            console.log(response);
+            console.log(data);
+            throw Error(response.statusText);
         }
     } catch (error) {
         console.log(error, 'login Error')

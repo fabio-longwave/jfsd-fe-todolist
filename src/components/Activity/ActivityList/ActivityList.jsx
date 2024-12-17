@@ -9,8 +9,7 @@ import {changeActivityStatus, editActivity, deleteActivity} from "../../../servi
 import {UserSelector} from "../../../reducers/user.slice.js";
 import AddEditActivity from "../AddEditActivity/AddEditActivity.jsx";
 
-const ActivityList = () => {
-    const activities = useSelector(ActivitiesSelector);
+const ActivityList = ({activities}) => {
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [selectedActivity, setSelectedActivity] = useState(null);
@@ -23,9 +22,11 @@ const ActivityList = () => {
     }
 
     const deleteHandler = async () => {
-        const res = await deleteActivity(selectedActivity["_id"], user.accessToken);
+        const res = await deleteActivity('sdjsadjaskdsajkd', user.accessToken);
         if (res) {
             dispatch(removeActivity(selectedActivity["_id"]));
+        } else {
+            console.log('error')
         }
         setDeleteModalVisible(false);
     }
@@ -43,7 +44,10 @@ const ActivityList = () => {
     }
 
     const onSubmit = async (values) => {
-        const res = await editActivity(selectedActivity["_id"], values, user.accessToken);
+        const res = await editActivity(selectedActivity["_id"], {
+            status: selectedActivity.status,
+            ...values
+        }, user.accessToken);
         if(res) {
             dispatch(changeActivity({id: selectedActivity["_id"], activity: values}))
         }
@@ -73,7 +77,7 @@ const ActivityList = () => {
         </Modal>
 
     return <>
-        <div className="card">
+        <div>
         {activities.length > 0 ? activities.map(activity => (
                 <ActivityItem key={activity["description"]} activity={activity} onEdit={showEditDialog}
                               onDelete={showDeleteDialog} setStatus={changeStatusHandler}/>

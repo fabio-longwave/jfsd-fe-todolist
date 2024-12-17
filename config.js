@@ -10,9 +10,8 @@ export const config = {
     },
 
     activityStatus: {
-        OPEN: 'open',
-        COMPLETED: 'completed',
-        ARCHIVED: 'archived',
-        DELETED: 'deleted'
+        OPEN: {value: 'open', label: 'Aperte'},
+        COMPLETED: {value: 'completed', label: 'Completate'},
+        ARCHIVED: {value: 'archived', label: 'Archiviate'},
     }
 }
