@@ -50,7 +50,7 @@ const LoginForm = () => {
         const res = await login(payload)
         if (res) {
             dispatch(setUser(res));
-            navigate('/todo-list')
+            navigate('/activity-list')
         }
     }
 

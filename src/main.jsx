@@ -12,6 +12,8 @@ import {PersistGate} from "redux-persist/integration/react";
 import ActivitiesPage from "./components/Activity/ActivitiesPage/ActivitiesPage.jsx";
 import AuthLayout from "./components/AuthLayout/AuthLayout.jsx";
 import MainLayout from "./components/MainLayout/MainLayout.jsx";
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
+import ActivityDetailPage from "./components/Activity/ActivityDetailPage/ActivityDetailPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -38,8 +40,12 @@ const router = createBrowserRouter([
                         element: <ProtectedRoute/>,
                         children: [
                             {
-                                path: 'todo-list',
+                                path: 'activity-list',
                                 element: <ActivitiesPage/>
+                            },
+                            {
+                                path: 'activity/:id',
+                                element: <ActivityDetailPage />
                             }
                         ]
                     }

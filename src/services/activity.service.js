@@ -17,6 +17,23 @@ export const getAllActivities = async (accessToken) => {
     }
 }
 
+export const getActivity = async (activityId, accessToken) => {
+    try {
+        const response = await fetch(`${config.api.BASE_URL}${config.api.ACTIVITY}/${activityId}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${accessToken}`},
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+            return data;
+        }
+    } catch (error) {
+        console.log(error, 'Activity Error')
+        throw Error(error)
+    }
+}
+
 export const addActivity = async (activity, accessToken) => {
     try {
         const response = await fetch(`${config.api.BASE_URL}${config.api.ACTIVITY}`, {

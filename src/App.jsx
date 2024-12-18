@@ -4,7 +4,6 @@ import {ThemeProvider} from "./contexts/ThemeProvider.jsx";
 
 
 function App() {
-
     return <ThemeProvider>
         <Outlet/>
     </ThemeProvider>

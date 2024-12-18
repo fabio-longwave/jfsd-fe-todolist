@@ -22,7 +22,7 @@ const ActivityList = ({activities}) => {
     }
 
     const deleteHandler = async () => {
-        const res = await deleteActivity('sdjsadjaskdsajkd', user.accessToken);
+        const res = await deleteActivity(selectedActivity["_id"], user.accessToken);
         if (res) {
             dispatch(removeActivity(selectedActivity["_id"]));
         } else {
