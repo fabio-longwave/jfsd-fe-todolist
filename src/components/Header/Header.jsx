@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import {ThemeContext} from "../../contexts/ThemeProvider.jsx";
 import {useSelector} from "react-redux";
 import {UserSelector} from "../../reducers/user.slice.js";
@@ -16,7 +16,7 @@ const Header = () => {
     }
 
     return <header className={styles.header}>
-        <div>{user.displayName || 'Non sei loggato'}</div>
+        <div>{user.displayName}</div>
         <div className={styles.button__container}>
             <button onClick={switchTheme}>
                 { theme === 'dark' ? <FaRegSun /> : <FaMoon /> }

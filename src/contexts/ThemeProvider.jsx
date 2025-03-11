@@ -6,7 +6,6 @@ export const ThemeProvider = ({children}) => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || 'light');
 
     useEffect(() => {
-        console.log(theme);
         document.querySelector('html').setAttribute('data-theme', theme)
         localStorage.setItem('theme', theme);
     }, [theme]);

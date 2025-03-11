@@ -12,7 +12,6 @@ import {PersistGate} from "redux-persist/integration/react";
 import ActivitiesPage from "./components/Activity/ActivitiesPage/ActivitiesPage.jsx";
 import AuthLayout from "./components/AuthLayout/AuthLayout.jsx";
 import MainLayout from "./components/MainLayout/MainLayout.jsx";
-import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 import ActivityDetailPage from "./components/Activity/ActivityDetailPage/ActivityDetailPage.jsx";
 
 const router = createBrowserRouter([

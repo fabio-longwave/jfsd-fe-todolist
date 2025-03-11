@@ -20,7 +20,7 @@ const LoginForm = () => {
         password: false,
     })
 
-    const checkInvalidField = (identifier) => {
+    const setFieldInvalid = (identifier) => {
         setFormInvalid((prevValue) => {
             return {...prevValue, [identifier]: true}
         });
@@ -34,10 +34,10 @@ const LoginForm = () => {
         const isPasswordInvalid = !hasMinLength(passwordValue, 8);
         if (isEmailInvalid || isPasswordInvalid) {
             if (isEmailInvalid) {
-                checkInvalidField('email')
+                setFieldInvalid('email')
             }
             if (isPasswordInvalid) {
-                checkInvalidField('password')
+                setFieldInvalid('password')
             }
             return;
         }
@@ -58,7 +58,7 @@ const LoginForm = () => {
     return <div className="card">
         <img src={Logo} className="logo" alt="logo"/>
         <h2>Accedi</h2>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} >
             <Input label="Email"
                    id="email"
                    type="text"

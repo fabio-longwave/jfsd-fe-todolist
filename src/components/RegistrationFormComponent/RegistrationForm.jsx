@@ -23,7 +23,7 @@ const RegistrationForm = () => {
     })
 
 
-    const checkInvalidField = (identifier) => {
+    const setFieldInvalid = (identifier) => {
         setFormInvalid((prevValue) => {
             return {...prevValue, [identifier]: true}
         });
@@ -40,16 +40,16 @@ const RegistrationForm = () => {
         const passwordsDoNotMatch = !isEqualsToOtherValue(passwordValue, confirmPasswordValue);
         if( isEmailInvalid || isPasswordInvalid || isNameInvalid || passwordsDoNotMatch) {
             if (isEmailInvalid) {
-                checkInvalidField('email')
+                setFieldInvalid('email')
             }
             if (isPasswordInvalid) {
-                checkInvalidField('password')
+                setFieldInvalid('password')
             }
             if (isNameInvalid) {
-                checkInvalidField('name')
+                setFieldInvalid('name')
             }
             if (passwordsDoNotMatch) {
-                checkInvalidField('passwordDoNotMatch')
+                setFieldInvalid('passwordDoNotMatch')
             }
             return;
         }

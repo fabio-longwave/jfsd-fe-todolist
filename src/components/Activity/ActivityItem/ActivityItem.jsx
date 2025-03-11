@@ -27,17 +27,17 @@ const ActivityItem = ({activity, onEdit, onDelete, setStatus}) => {
                 <button onClick={() => navigate(`/activity/${activity['_id']}`, {state: {activity: activity}})} title="Vedi dettaglio"><FaRegEye/></button>
                 {activity.status === 'completed' &&
                     <>
-                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.OPEN)}
+                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.OPEN.value)}
                                 title="Riapri attività"><FaArrowLeft/>
                         </button>
-                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.ARCHIVED)}
+                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.ARCHIVED.value)}
                                 title="Archivia" style={{order: 2}}><FaBoxArchive/>
                         </button>
                     </>
                 }
                 {activity.status === 'open' &&
                     <>
-                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.COMPLETED)}
+                        <button onClick={() => setStatus(activity['_id'], config.activityStatus.COMPLETED.value)}
                                 title="Elimina">
                             <FaCheck/></button>
                         <button onClick={() => onEdit(activity)} title="Modifica" style={{order: 1}}><FaRegPenToSquare/>

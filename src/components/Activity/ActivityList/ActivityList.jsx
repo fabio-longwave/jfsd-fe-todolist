@@ -1,10 +1,10 @@
 import ActivityItem from "../ActivityItem/ActivityItem.jsx";
-import {ActivitiesSelector, removeActivity, editActivity as changeActivity, setActivityStatus} from "../../../reducers/activities.slice.js";
+import {removeActivity, editActivity as changeActivity, setActivityStatus} from "../../../reducers/activities.slice.js";
 import {useDispatch, useSelector} from "react-redux";
 import {createPortal} from "react-dom";
 import {FaRegTrashCan} from "react-icons/fa6";
 import Modal from "../../Modal/Modal.jsx";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {changeActivityStatus, editActivity, deleteActivity} from "../../../services/activity.service.js";
 import {UserSelector} from "../../../reducers/user.slice.js";
 import AddEditActivity from "../AddEditActivity/AddEditActivity.jsx";
@@ -32,7 +32,7 @@ const ActivityList = ({activities}) => {
     }
 
     const changeStatusHandler = async (activityId, status) => {
-        const res = await changeActivityStatus(activityId, status, user.accessToken);
+       const res = await changeActivityStatus(activityId, status, user.accessToken);
         if (res) {
             dispatch(setActivityStatus({id: activityId, status: status}));
         }
@@ -54,10 +54,6 @@ const ActivityList = ({activities}) => {
         setEditModalVisible(false);
     }
 
-    useEffect(() => {
-        console.log(selectedActivity, 'ACTIVITY')
-
-    }, [selectedActivity]);
 
     const deleteModal = selectedActivity &&
         <Modal isOpen={deleteModalVisible} onClose={() => setDeleteModalVisible(false)} header="Elimina attività">
@@ -79,7 +75,7 @@ const ActivityList = ({activities}) => {
     return <>
         <div>
         {activities.length > 0 ? activities.map(activity => (
-                <ActivityItem key={activity["description"]} activity={activity} onEdit={showEditDialog}
+                <ActivityItem key={activity["_id"]} activity={activity} onEdit={showEditDialog}
                               onDelete={showDeleteDialog} setStatus={changeStatusHandler}/>
             )) : <div>Nessun elemento presente</div>}
         </div>
